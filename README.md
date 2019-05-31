@@ -1,2 +1,2 @@
 # Netscan
-O Netscan é uma ferramenta de capturas de dispositivos ativos em rede local, para o controle de acesso.
+O Netscan é uma ferramenta de captura de dispositivos ativos em rede local, para o controle de acesso.
