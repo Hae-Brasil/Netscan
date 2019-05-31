@@ -1,0 +1,29 @@
+#!/usr/bin/env bash
+# Author: Matheus Santana 
+# Group: [HAE]Hazardous Hacking
+# Version: 1.0
+# --- Cores ---
+Verde='\e[1;3;32m'
+Fundo='\e[1;7m'
+Normal='\e[0m'
+clear
+echo -e """███╗   ██╗███████╗████████╗███████╗ ██████╗ █████╗ ███╗   ██╗
+████╗  ██║██╔════╝╚══██╔══╝██╔════╝██╔════╝██╔══██╗████╗  ██║
+██╔██╗ ██║█████╗     ██║   ███████╗██║     ███████║██╔██╗ ██║
+██║╚██╗██║██╔══╝     ██║   ╚════██║██║     ██╔══██║██║╚██╗██║
+██║ ╚████║███████╗   ██║   ███████║╚██████╗██║  ██║██║ ╚████║
+╚═╝  ╚═══╝╚══════╝   ╚═╝   ╚══════╝ ╚═════╝╚═╝  ╚═╝╚═╝  ╚═══╝"""
+echo -e """Author: Matheus Santana             v.1.0
+Group: [HAE]™Hazardous Hacking
+-----------------------------\n"""
+echo -e $Verde"[NETSCAN] - Network Scanner"$Normal
+IP=$(grep -Eo "[0-9]+\.[0-9]+\.[0-9]+\." /etc/resolv.conf | head -n 1)
+for x in {1..24};do
+so=$(ping -c1 -w 0.1 -4 $IP$x | grep -oP "(?<=ttl=)[0-9]+")
+if [[ $so == '64' ]];then sys="Linux";elif [[ $so == '128' ]];then sys="Windows";elif [[ $so == '255' ]];then sys="Unix";fi
+    if ping -c1 -w 0.1 -4 $IP$x >> /dev/null;then
+        echo "Ativo: $IP$x : $sys"
+    fi
+done
+echo "--------------------"
+echo "+ Êxito +"
